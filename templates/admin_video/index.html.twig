@@ -1,0 +1,64 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminVideoController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/PHP/vod_platform/src/Controller/AdminVideoController.php'|file_link(0) }}">src/Controller/AdminVideoController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/wamp64/www/PHP/vod_platform/templates/admin_video/index.html.twig'|file_link(0) }}">templates/admin_video/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %} #}
+
+
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Video index{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1>Video index</h1>
+    <a href="{{ path('app_admin_video_new') }}" class="btn btn-success"><i class="aligne-middle" data-feather="plus"></i></a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>ImageName</th>
+                <th>Slug</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for video in videos %}
+            <tr>
+                <td>{{ video.id }}</td>
+                <td>{{ video.nom }}</td>
+                <td>{{ video.description|raw }}</td>
+                <td>{{ video.imageName }}</td>
+                <td>{{ video.slug }}</td>
+                <td>{{ video.updatedAt ? video.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_video_show', {'id': video.id}) }}">show</a>
+                    <a href="{{ path('app_admin_video_edit', {'id': video.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

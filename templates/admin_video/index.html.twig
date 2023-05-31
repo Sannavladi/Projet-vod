@@ -1,25 +1,3 @@
-{# {% extends 'base.html.twig' %}
-
-{% block title %}Hello AdminVideoController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/PHP/vod_platform/src/Controller/AdminVideoController.php'|file_link(0) }}">src/Controller/AdminVideoController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/PHP/vod_platform/templates/admin_video/index.html.twig'|file_link(0) }}">templates/admin_video/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %} #}
-
-
 {% extends 'base-backend.html.twig' %}
 
 {% block title %}Video index{% endblock %}
@@ -34,25 +12,30 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>ImageName</th>
+                <th>Duration</th>
+                <th>Published At</th>
+                <th>Video URL</th>
+                <th>Preview Image</th>
                 <th>Slug</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for video in videos %}
             <tr>
                 <td>{{ video.id }}</td>
-                <td>{{ video.nom }}</td>
+                <td>{{ video.title }}</td>
                 <td>{{ video.description|raw }}</td>
-                <td>{{ video.imageName }}</td>
+                <td>{{ video.duration }}</td>
+                <td>{{ video.publishedAt ? video.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ video.videoUrl }}</td>
+                <td>{{ video.previewImage }}</td>
                 <td>{{ video.slug }}</td>
-                <td>{{ video.updatedAt ? video.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_admin_video_show', {'id': video.id}) }}">show</a>
-                    <a href="{{ path('app_admin_video_edit', {'id': video.id}) }}">edit</a>
-                </td>
+                
+            <td class="text-end">
+                <a href="{{ path('app_admin_video_show', {'id': video.id}) }}" class="btn btn-warning"><i class="aligne-middle" data-feather="eye"></i></a>
+                <a href="{{ path('app_admin_video_edit', {'id': video.id}) }}" class="btn btn-success"><i class="aligne-middle" data-feather="edit-2"></i></a>
+            </td>
             </tr>
         {% else %}
             <tr>

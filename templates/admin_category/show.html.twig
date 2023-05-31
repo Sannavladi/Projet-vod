@@ -3,6 +3,7 @@
 {% block title %}Categorie{% endblock %}
 
 {% block body %}
+<a href="{{ path('app_admin_category_index') }}" class="btn btn-dark mb-3">Retour</a>
     <h1>Categorie</h1>
 
     <table class="table">
@@ -13,7 +14,7 @@
             </tr>
             <tr>
                 <th>Nom</th>
-                <td>{{ category.nom }}</td>
+                <td>{{ category.name }}</td>
             </tr>
             <tr>
                 <th>Slug</th>

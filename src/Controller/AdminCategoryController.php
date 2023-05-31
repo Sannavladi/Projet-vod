@@ -46,15 +46,15 @@ $this->addFlash('success', 'La catégorie '.$category->getName(). ' a bien été
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_category_show', methods: ['GET'])]
+    #[Route('/admin/category/{id}', name: 'app_admin_category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
         return $this->render('admin_category/show.html.twig', [
-            'categorie' => $category,
+            'category' => $category,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_admin_category_edit', methods: ['GET', 'POST'])]
+    #[Route('/admin/category/{id}/edit', name: 'app_admin_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
@@ -67,12 +67,12 @@ $this->addFlash('success', 'La catégorie '.$category->getName(). ' a bien été
         }
 
         return $this->renderForm('admin_category/edit.html.twig', [
-            'categorie' => $category,
+            'category' => $category,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_category_delete', methods: ['POST'])]
+    #[Route('/admin/category/{id}', name: 'app_admin_category_delete', methods: ['POST'])]
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {

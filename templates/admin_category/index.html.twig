@@ -20,17 +20,51 @@
 {% endblock %} #}
 
 
-{% extends 'base.html.twig' %}
+{% extends 'base-backend.html.twig' %}
 
-{% block title %}Nouvelle catégorie{% endblock %}
+{% block title %}Catégorie index{% endblock %}
 
 {% block body %}
 
 
-<a href="{{ path('app_admin_category_index') }}" class="btn btn-dark mb-3">Retour</a>
-    <h1>Nouvelle catégorie</h1>
+{% for label, messages in app.flashes() %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
 
-    {{ include('admin_category/_form.html.twig') }}
+<div class="d-flex flex-wrap justify-content-between align-items-center">
+    <h1>Categorie</h1>
+    <a href="{{ path('app_admin_category_new') }}" class="btn btn-success"><i class="aligne-middle" data-feather="plus"></i></a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Slug</th>
+            <th class="text-end">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
+            <td>{{ category.slug }}</td>
+            <td class="text-end">
+                <a href="{{ path('app_admin_category_show', {'id': category.id}) }}" class="btn btn-warning"><i class="aligne-middle" data-feather="eye"></i></a>
+                <a href="{{ path('app_admin_category_edit', {'id': category.id}) }}" class="btn btn-success"><i class="aligne-middle" data-feather="edit-2"></i></a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">No records found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
-    
 {% endblock %}

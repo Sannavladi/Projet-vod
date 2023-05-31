@@ -27,7 +27,8 @@ final class Version20230530102436 extends AbstractMigration
         $this->addSql('ALTER TABLE comment ADD user_id INT DEFAULT NULL, DROP user');
         $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526CA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('CREATE INDEX IDX_9474526CA76ED395 ON comment (user_id)');
-        $this->addSql('ALTER TABLE video ADD slug VARCHAR(255) NOT NULL, DROP categories, DROP preview_image');
+        $this->addSql('CREATE TABLE video (video_id INT NOT NULL, title VARCHAR(255), description VARCHAR(255), duration DATETIME, published_at DATETIME, video_url VARCHAR(255)');
+        $this->addSql('ALTER TABLE video ADD slug VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema): void

@@ -34,30 +34,28 @@
     <body>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{{ path('app_home') }}">Coucou</a>
+    <a class="navbar-brand" href="{{ path('app_home') }}">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav w-100">
-      <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ path('app_home') }}">Home</a>
-        </li>
+      
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="{{ path('app_front_video') }}">Nos videos</a>
+          <a class="nav-link" aria-current="page" href="{{ path('app_front_video') }}">Vidéos</a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="">Nos catégories</a>
+          <a class="nav-link" href="">Catégories</a>
         </li>
 
         <li class="nav-item ms-auto">
         <div class="d-lg-flex">
         {% if app.user is not null %}
-          <a class="nav-link" href="">Mon compte</a>
+          <a class="nav-link" href="{{ path('app_profil')}}">Mon compte</a>
           <a class="nav-link" href="{{ path('app_logout')}}">Déconnexion</a>
           {% else %}
-          <a class="nav-link" href=""">Inscription</a>
+          <a class="nav-link" href="{{ path('app_register')}}">Inscription</a>
           <a class="nav-link" href="{{ path('app_login')}}">Connexion</a>
           {% endif %}
     

@@ -51,11 +51,15 @@ class Video
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'videos')]
     private Collection $categories;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'videos')]
+    private Collection $videos;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->categories = new ArrayCollection();
+        $this->videos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,6 +228,30 @@ class Video
     public function removeCategory(Category $category): self
     {
         $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(User $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos->add($video);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(User $video): self
+    {
+        $this->videos->removeElement($video);
 
         return $this;
     }

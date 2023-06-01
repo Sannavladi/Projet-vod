@@ -1,15 +1,12 @@
 <?php
-
 namespace App\Controller;
-
 use App\Repository\VideoRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 class VideoController extends AbstractController
 {
-    #[Route('/video', name: 'app_video')]
+    #[Route('/video', name: 'app_front_video')]
     public function index(VideoRepository $videoRepository): Response
     {
         $videos = $videoRepository->findAll();

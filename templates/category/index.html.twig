@@ -3,15 +3,14 @@
 {% block title %}Catégories{% endblock %}
 
 {% block body %}
-<h1>Catégories</h1>
-{# On affiche tous les category avec une boucle #}
-<div class="row">
-    {% for category in categories %}
-    <div class="col-12 col-md-3 col-xl-2">
-        <div class="card">
-            <p>{{ category.name }}</p>
-        </div>
+    <h1>Catégories</h1>
+    <div class="row">
+        {% for category in categories %}
+            <div class="col-12 col-md-3 col-xl-2">
+                <div class="card">
+                    <a href="{{ path('app_category_show', { slug : category.slug}) }}" class="btn btn-light btn-block text-center">{{ category.name }}</a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 {% endblock %}

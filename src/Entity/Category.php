@@ -33,11 +33,11 @@ class Category
     #[ORM\ManyToMany(targetEntity: Video::class, mappedBy: 'categories')]
     private Collection $videos;
 
+
     public function __construct()
     {
         $this->videos = new ArrayCollection();
     }
-
 
     // ====================================================== //
 // ==================== MAGIC FUNCTION =================== //

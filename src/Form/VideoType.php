@@ -27,6 +27,7 @@ class VideoType extends AbstractType
             ])
             // ->add('videoUrl')
             // ->add('slug')
+            //->add('imageName')
             ->add('users')
             ->add('category', EntityType::class, [
                 'class' => 'App\Entity\Category',

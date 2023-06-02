@@ -35,6 +35,10 @@ class Video
     #[ORM\Column(length: 255)]
     private ?string $videoUrl = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageName = null;
+
+
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
     #[Vich\UploadableField(mapping: 'video', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $previewImage = null;
@@ -127,6 +131,18 @@ class Video
         return $this;
     }
 
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
     public function getPreviewImage(): ?File
     {
         return $this->previewImage;
@@ -138,6 +154,8 @@ class Video
 
         return $this;
     }
+
+    
 
     public function getSlug(): ?string
     {

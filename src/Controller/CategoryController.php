@@ -22,10 +22,7 @@ class CategoryController extends AbstractController
     #[Route('/category/{slug}', name: 'app_category_show')]
     public function showCategory($slug, CategoryRepository $categoryRepository): Response
     {
-        
         $category = $categoryRepository->findOneBy(['slug' => $slug]);
-
-        
         return $this->render('category/show.html.twig', [
             'category' => $category,
         ]);
